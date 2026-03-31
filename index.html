@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creovibe Solutions — Turning Ideas into Unforgettable Experiences</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dim: #8A6A28;
+      --black: #080808;
+      --dark: #111010;
+      --card: #161514;
+      --border: rgba(201,168,76,0.18);
+      --text: #F0EAD6;
+      --muted: #8A8378;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(8,8,8,0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #000 !important;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 60px 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 80% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%),
+        linear-gradient(160deg, #0f0d0a 0%, #080808 60%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 9vw, 128px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 44px;
+      font-weight: 400;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #000;
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(201,168,76,0.25);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      display: flex;
+      gap: 48px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 100px 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      letter-spacing: 2px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .section-title span { color: var(--gold); }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card-stack {
+      position: relative;
+      height: 420px;
+    }
+
+    .about-card {
+      position: absolute;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .about-card.main {
+      width: 70%;
+      height: 320px;
+      top: 0; left: 0;
+      background: linear-gradient(135deg, #1a1612, #0f0c09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-card.accent {
+      width: 55%;
+      height: 200px;
+      bottom: 0; right: 0;
+      background: linear-gradient(135deg, var(--gold-dim), #5a3e10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .big-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 90px;
+      color: var(--gold);
+      opacity: 0.3;
+    }
+
+    .accent-big-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px;
+      color: #fff;
+      opacity: 0.5;
+    }
+
+    .about-text .section-sub {
+      max-width: 100%;
+      margin-bottom: 36px;
+    }
+
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── SERVICES ── */
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      gap: 40px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--card);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover { background: #1a1714; }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+
+    .service-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .service-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-items li {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-items li::before {
+      content: '→';
+      color: var(--gold);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .highlight-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      background: var(--card);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-dim);
+    }
+
+    .highlight-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .highlight-card:hover::after { transform: scaleX(1); }
+
+    .highlight-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .highlight-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .highlight-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ── CLIENTS ── */
+    .clients { overflow: hidden; }
+
+    .clients-header { margin-bottom: 60px; }
+
+    .clients-marquee-wrap {
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .clients-marquee-wrap::before,
+    .clients-marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+
+    .clients-marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--black), transparent);
+    }
+
+    .clients-marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--black), transparent);
+    }
+
+    .clients-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .client-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .client-chip:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── WHY US ── */
+    .why {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .why-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: default;
+    }
+
+    .why-point:hover {
+      border-color: var(--border);
+      background: var(--card);
+    }
+
+    .why-point-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--gold-dim);
+      letter-spacing: 1px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .why-point-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .why-point-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .why-visual {
+      background: linear-gradient(135deg, #181410, #0f0c08);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .why-big-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 100px;
+      line-height: 1;
+      letter-spacing: 4px;
+      color: var(--gold);
+      opacity: 0.15;
+      position: relative;
+    }
+
+    .why-center-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-years {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .why-years-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-value:hover { color: var(--gold); }
+
+    /* ── FORM ── */
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px;
+    }
+
+    .form-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: 'Urbanist', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.04);
+    }
+
+    .form-group select option {
+      background: var(--dark);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'Urbanist', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 48px 60px 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-gstin {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: monospace;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--gold);
+      color: #000;
+      padding: 16px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE NAV TOGGLE ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 18px 28px; }
+      section { padding: 80px 28px; }
+      .hero { padding: 120px 28px 160px; }
+      .hero-stats { right: 28px; bottom: 40px; gap: 28px; }
+      .stat-num { font-size: 40px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .highlights-grid { grid-template-columns: 1fr 1fr; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-card-stack { height: 260px; }
+      .why-inner { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 40px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <img src="https://i.ibb.co/WWp7n147/image.png" alt="Creovibe Solutions" class="logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact" class="nav-cta">Plan Your Event</a></li>
+    </ul>
+    <div class="nav-toggle" onclick="toggleMobileNav(this)">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">7+ Years of Excellence</div>
+      <h1>
+        Turning Ideas Into
+        <em>Unforgettable</em>
+        Experiences.
+      </h1>
+      <p>End-to-end event management, production, and brand experiences — delivered with precision, creativity, and passion across Karnataka and beyond.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Plan Your Event →
+        </a>
+        <a href="#services" class="btn-outline">
+          Explore Services
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">70+</div>
+        <div class="stat-label">Successful Events</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Cities Covered</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="about-card-stack">
+          <div class="about-card main">
+            <div class="big-number">7+</div>
+          </div>
+          <div class="about-card accent">
+            <div class="accent-big-number">KA</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-tag">Who We Are</div>
+        <h2 class="section-title">Dynamic Events <span>&</span> Media Company</h2>
+        <p class="section-sub">Creovibe Solutions is a dynamic event and media company with 7+ years of experience delivering impactful and memorable experiences. We specialize in end-to-end event solutions, turning ideas into flawlessly executed events with creativity, precision, and professionalism.</p>
+        <br>
+        <p class="section-sub">From schools and colleges to corporate organizations, we offer customized services that bring every vision to life — seamless planning, innovative concepts, and high-quality execution on every project.</p>
+        <br>
+        <div class="about-pills">
+          <span class="pill">Corporate Events</span>
+          <span class="pill">Award Shows</span>
+          <span class="pill">Brand Activations</span>
+          <span class="pill">Media Production</span>
+          <span class="pill">Digital Solutions</span>
+          <span class="pill">College Events</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Our <span>Services</span></h2>
+      </div>
+      <p class="section-sub">A complete suite of event, media, and branding services — all under one roof.</p>
+    </div>
+
+    <div class="services-grid reveal">
+
+      <div class="service-card">
+        <div class="service-icon">🎪</div>
+        <div class="service-title">Event Management</div>
+        <ul class="service-items">
+          <li>Corporate Events</li>
+          <li>Award Functions & Shows</li>
+          <li>Product Launches</li>
+          <li>College & School Events</li>
+          <li>Celebrity Events</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎬</div>
+        <div class="service-title">Event Production & Support</div>
+        <ul class="service-items">
+          <li>Stage Setup, Sound & Lighting</li>
+          <li>Event Planning & Execution</li>
+          <li>Anchors & Emcees</li>
+          <li>Hostesses & Event Staff</li>
+          <li>Complete Manpower Support</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <div class="service-title">Branding & Promotions</div>
+        <ul class="service-items">
+          <li>Brand Activations Across Karnataka</li>
+          <li>Outdoor Advertising</li>
+          <li>Promotional Campaigns</li>
+          <li>Corporate Gifting & Merchandise</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏆</div>
+        <div class="service-title">Mementos & Custom Awards</div>
+        <ul class="service-items">
+          <li>School & College Mementos</li>
+          <li>Corporate Awards & Trophies</li>
+          <li>Customized Gifts & Recognition Items</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎥</div>
+        <div class="service-title">Media & Creative Services</div>
+        <ul class="service-items">
+          <li>Graphic Designing</li>
+          <li>Video Shoots & Event Coverage</li>
+          <li>Promotional Videos</li>
+          <li>Social Media Content</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <div class="service-title">Digital Solutions</div>
+        <ul class="service-items">
+          <li>Website Development</li>
+          <li>Digital Marketing</li>
+          <li>Online Promotions & Campaigns</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="highlights">
+    <div class="reveal">
+      <div class="section-tag">Why We Stand Out</div>
+      <h2 class="section-title">Built for <span>Impact</span></h2>
+    </div>
+
+    <div class="highlights-grid">
+      <div class="highlight-card reveal">
+        <span class="highlight-icon">⚡</span>
+        <div class="highlight-title">Corporate Events</div>
+        <p class="highlight-desc">High-impact corporate events designed with precision, creativity, and professionalism — reflecting your brand identity flawlessly.</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="highlight-icon">🌟</span>
+        <div class="highlight-title">Award Shows</div>
+        <p class="highlight-desc">Grand award ceremonies from concept to execution — stunning stage setups, flawless coordination, and memorable experiences for every attendee.</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="highlight-icon">🎙️</span>
+        <div class="highlight-title">Event Production</div>
+        <p class="highlight-desc">Complete event production including stage, sound, lighting, anchors, hostesses, and manpower — delivering smooth and engaging experiences.</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="highlight-icon">📍</span>
+        <div class="highlight-title">Branding & Promotions</div>
+        <p class="highlight-desc">Powerful brand activations, outdoor advertising, and promotional campaigns across Karnataka to maximize your visibility and reach.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients" id="clients">
+    <div class="clients-header reveal">
+      <div class="section-tag">Trusted By</div>
+      <h2 class="section-title">Our <span>Happy Clients</span></h2>
+    </div>
+
+    <div class="clients-marquee-wrap">
+      <div class="clients-track" id="clientsTrack">
+        <div class="client-chip">Suvarna News</div>
+        <div class="client-chip">Vijayavani</div>
+        <div class="client-chip">Kannada Prabha</div>
+        <div class="client-chip">Durga Parameshwari Travels</div>
+        <div class="client-chip">The Indian Express</div>
+        <div class="client-chip">Vijay Karnataka</div>
+        <div class="client-chip">Swadeshi Disha</div>
+        <div class="client-chip">Corporate Partners</div>
+        <div class="client-chip">Leading Colleges</div>
+        <div class="client-chip">Top Schools</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="client-chip">Suvarna News</div>
+        <div class="client-chip">Vijayavani</div>
+        <div class="client-chip">Kannada Prabha</div>
+        <div class="client-chip">Durga Parameshwari Travels</div>
+        <div class="client-chip">The Indian Express</div>
+        <div class="client-chip">Vijay Karnataka</div>
+        <div class="client-chip">Swadeshi Disha</div>
+        <div class="client-chip">Corporate Partners</div>
+        <div class="client-chip">Leading Colleges</div>
+        <div class="client-chip">Top Schools</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="why">
+    <div class="why-inner">
+      <div>
+        <div class="section-tag reveal">Why Choose Us</div>
+        <h2 class="section-title reveal">The <span>Creovibe</span> Advantage</h2>
+        <div class="why-points">
+          <div class="why-point reveal">
+            <div class="why-point-num">01</div>
+            <div>
+              <div class="why-point-title">End-to-End Event Solutions</div>
+              <p class="why-point-desc">From planning to execution, we handle every detail so you don't have to worry about a thing.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="why-point-num">02</div>
+            <div>
+              <div class="why-point-title">Creative & Customized Concepts</div>
+              <p class="why-point-desc">Every event is unique. We tailor every concept to your vision, brand, and audience.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="why-point-num">03</div>
+            <div>
+              <div class="why-point-title">7+ Years of Industry Experience</div>
+              <p class="why-point-desc">A proven track record of 70+ events and 50+ satisfied clients across Karnataka.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="why-point-num">04</div>
+            <div>
+              <div class="why-point-title">Complete Media & Promotional Support</div>
+              <p class="why-point-desc">Full media coverage, creative content, and digital promotion under one roof.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="why-point-num">05</div>
+            <div>
+              <div class="why-point-title">Wide Network Across Karnataka</div>
+              <p class="why-point-desc">Deep connections across 5+ cities — enabling seamless execution anywhere in the state.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-visual reveal">
+        <div class="why-big-text">CREOVIBE</div>
+        <div class="why-center-text">
+          <div class="why-years">7+</div>
+          <div class="why-years-label">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="section-tag reveal">Get In Touch</div>
+        <h2 class="section-title reveal">Let's Plan Your <span>Event</span></h2>
+        <p class="section-sub reveal">Ready to create something unforgettable? Reach out and let's talk about how Creovibe Solutions can bring your vision to life.</p>
+
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-value">Creovibe Solutions, Bangalore – 560049</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <a href="tel:9606255441" class="contact-value">+91 96062 55441</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <a href="mailto:creovibe25@gmail.com" class="contact-value">creovibe25@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Operating Hours</div>
+              <div class="contact-value">Mon–Fri: 9 AM – 5 PM &nbsp;|&nbsp; Sat: 10 AM – 3 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-title">Plan Your Event</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Rahul Sharma" id="f-name" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210" id="f-phone" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@company.com" id="f-email" />
+        </div>
+        <div class="form-group">
+          <label>Event Type</label>
+          <select id="f-type">
+            <option value="">Select event type…</option>
+            <option>Corporate Event</option>
+            <option>Award Function / Show</option>
+            <option>Product Launch</option>
+            <option>College / School Event</option>
+            <option>Celebrity Event</option>
+            <option>Brand Activation</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Event</label>
+          <textarea placeholder="Describe your event — date, location, expected guests, requirements…" id="f-msg"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="#" class="logo">
+        <img src="https://i.ibb.co/WWp7n147/image.png" alt="Creovibe Solutions" class="logo-img" />
+      </a>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Creovibe Solutions. All rights reserved. · Bangalore</div>
+      <div class="footer-gstin">GSTIN: 29CVFPA9302R1Z3</div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">✓ Enquiry sent! We'll reach out within 24 hours.</div>
+
+  <script>
+    // ── Scroll Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Sticky Nav Shadow ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.style.boxShadow = window.scrollY > 40 ? '0 8px 40px rgba(0,0,0,0.5)' : 'none';
+    });
+
+    // ── Mobile Nav Toggle ──
+    let navOpen = false;
+    function toggleMobileNav(btn) {
+      navOpen = !navOpen;
+      const links = document.querySelector('.nav-links');
+      links.style.display = navOpen ? 'flex' : 'none';
+      links.style.flexDirection = navOpen ? 'column' : '';
+      links.style.position = navOpen ? 'absolute' : '';
+      links.style.top = navOpen ? '72px' : '';
+      links.style.left = navOpen ? '0' : '';
+      links.style.right = navOpen ? '0' : '';
+      links.style.background = navOpen ? 'rgba(8,8,8,0.97)' : '';
+      links.style.padding = navOpen ? '28px' : '';
+      links.style.borderBottom = navOpen ? '1px solid rgba(201,168,76,0.18)' : '';
+      btn.children[0].style.transform = navOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
+      btn.children[1].style.opacity = navOpen ? '0' : '1';
+      btn.children[2].style.transform = navOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
+    }
+
+    // ── Form Submit ──
+    function submitForm() {
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+
+      if (!name || !phone || !email) {
+        alert('Please fill in your name, phone, and email.');
+        return;
+      }
+
+      // Mailto fallback
+      const type = document.getElementById('f-type').value;
+      const msg = document.getElementById('f-msg').value;
+      const subject = encodeURIComponent('Event Enquiry from ' + name);
+      const body = encodeURIComponent(
+        `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nEvent Type: ${type || 'Not specified'}\n\nMessage:\n${msg}`
+      );
+      window.location.href = `mailto:creovibe25@gmail.com?subject=${subject}&body=${body}`;
+
+      // Show toast
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    // ── Animate stats counter ──
+    function animateCounter(el, target, suffix = '+') {
+      let start = 0;
+      const dur = 1800;
+      const step = 16;
+      const inc = target / (dur / step);
+      const timer = setInterval(() => {
+        start += inc;
+        if (start >= target) {
+          el.textContent = target + suffix;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(start) + suffix;
+        }
+      }, step);
+    }
+
+    const statNums = document.querySelectorAll('.stat-num');
+    const statTargets = [70, 50, 5];
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          animateCounter(e.target, statTargets[i]);
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(n => statObs.observe(n));
+  </script>
+</body>
+</html>
